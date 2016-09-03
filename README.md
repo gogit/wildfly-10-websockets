@@ -16,14 +16,14 @@ Click on send message
 
 This sends a message from the browser to the server. The server responds with "subscriber id" . The subscriber id is then used by the javascript on the page to open a websocket connection and wait for messages from the server.
 
-![Step 1][step1.png]
+![Step 1](step1.png)
 
 ### Step 2
 Copy the subscriber id
 
 You will need this id to simulate async messages from the server to the client.
 
-![Step2][step2.png]
+![Step2](step2.png)
 
 ### Step 3
 Post a message using curl or python to simulate server response
@@ -38,6 +38,6 @@ r = requests.post("http://localhost:9080/async-push/rest/push-msg/"+subscriberId
 
 ### Step 4
 
-![Step 4][step4.png]
+![Step 4](step4.png)
 
 
