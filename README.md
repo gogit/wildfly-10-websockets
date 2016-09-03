@@ -7,6 +7,14 @@ Prototype of a websocket async push implementation
 ## Details
 The prototype is a JavaEE 7 app that builds as a war file and can be deployed to wildfly 10. To build the app you need maven installed and run the command "mvn clean package". Copy the war file to wildfly 10. It also requires a JMS topic "public.event" to be available on wildfly.
 
+## Flow of information
+The flow of information is as follows after you deploy the app to wildfly.
+
+Enter the web page url in a browser and click on the send message link. The server responds with a subscriber id. The client side javascript uses the subscriber id to open a websocket. You can then use the subscriber id to simulate a server push to the browser. 
+
+
+<img src="flow.png" alt="flow" style="width: 450px;">
+
 ## Steps
 
 To test the app after deployment, enter the home url and follow the steps below
