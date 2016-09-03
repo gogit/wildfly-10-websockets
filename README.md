@@ -45,7 +45,7 @@ r = requests.post("http://localhost:9080/async-push/rest/push-msg/"+subscriberId
 ```
 
 ### Step 4
-
+The browser displays the message that you posted via the websocket.
 <img src="step4.png" alt="Step4" style="width: 450px;">
 
 
