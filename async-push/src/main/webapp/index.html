@@ -1,0 +1,63 @@
+<html>
+<meta charset="UTF-8">
+<title>WebSocket Client</title>
+<script type="text/javascript">
+	
+</script>
+</head>
+
+<a id="sendMsg" href="/async-push/rest/command-test/1234">send
+	message 1234</a>
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+	integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+	crossorigin="anonymous"></script>
+
+<script>
+	function waitOnResponse(subscriberId) {
+
+		var ws = new WebSocket("ws://localhost:9080/async-push/callback/"
+				+ subscriberId);
+
+		ws.onopen = function() {
+			alert("Web Socket is connected!!");
+		};
+		ws.onmessage = function(evt) {
+			var msg = evt.data;
+			alert("Message received:" + msg);
+			ws.close();
+		};
+		
+		ws.onclose = function() {
+			alert("Connection is closed...");
+		};
+
+	}
+
+	$(document).ready(function() {
+
+		$("#sendMsg").click(function(event) {
+			alert("sending message");
+			event.preventDefault();
+
+			var href = $("#sendMsg").attr("href");
+
+			$.ajax({
+				url : href
+			}).done(function(data, textStatus, xhr) {
+				var header = xhr.getResponseHeader('XASYNC-SUBS-ID');
+				alert(data);
+				alert("Subscriber Id : " + header);
+				waitOnResponse(header);
+			});
+
+			$.getJSON(href, function(data) {
+				alert("Subscriber Id " + data);
+
+			});
+		});
+	});
+</script>
+
+</html>
